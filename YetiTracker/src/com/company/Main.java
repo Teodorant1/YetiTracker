@@ -1,48 +1,65 @@
 package com.company;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Main extends DogWalker implements InputReaderINT, FileReaderINT {
+public class Main extends DogWalker implements  FileReaderINT {
 
 
 
+
+    public static int CurrentMode = 1;
+    public static int getCurrentMode() {
+        return CurrentMode;
+    }
+
+    public static void setCurrentMode(int currentMode) {
+        CurrentMode = currentMode;
+    }
 
     public static void main(String[] args) throws Exception {
 
         DogWalker Dog1 = new DogWalker();
         DogWalker.Coordinates.add(0,  "0");
+        FileReaderINT F1 = new FileReader();
 
-        int CurrentMode = 1;
-        String motd = "Write 1,2,3,4 or 0";
 
-        new Thread(() -> {
-            try {
-                InputReaderINT.Run();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
+       // String motd = "Write 1,2,3 or 0";
 
-        System.out.println(motd);
+      //  new Thread(() -> //{Main.run1(1);}).start();
 
-        for (;;) {
+      //  System.out.println(motd);
+
+        for (int i = 0; i < 5; i++) {
             System.out.println(("Mode: " +CurrentMode));
             Dog1.DogWalker();
+            System.out.println(Coordinates.indexOf(Coordinates.size()));
+            Dog1.DogWriter2p0();
+            FileReaderINT.FileReader();
+            Dog1.DogWriter();
             TimeUnit.SECONDS.sleep(5);
 
 
-            if (CurrentMode>0 && CurrentMode<2)
+            if (getCurrentMode()==1)
             {System.out.println("Another one bites the dust");}
-else if (CurrentMode>1 && CurrentMode<3) {FileReaderINT.FileReader();}
-else if (CurrentMode>2 && CurrentMode<4) {Dog1.DogWriter();
-TimeUnit.SECONDS.sleep(5);
-System.exit(0);}
+            else if (getCurrentMode()==2) {Dog1.DogWriter();setCurrentMode(1);}
+else if (getCurrentMode()==3) {FileReaderINT.FileReader();setCurrentMode(1); }
+else if (getCurrentMode()==0) {System.exit(0);}
+
+
 
 
     }  }
 
+   // @Override
+    //public void run() {run1(1);
 
-    @Override
-    public void run() {
+    //}
+
+    //public static int run1(int CurrentMode) {for (;;) {
+
+      //  Scanner scanner = new Scanner(System.in);
+      // Main.CurrentMode =  scanner.nextInt();
+       // System.out.println("Mode: " + Main.CurrentMode);
+       // return Main.CurrentMode;
 
     }
-}

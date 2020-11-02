@@ -9,7 +9,7 @@ public interface FileReaderINT {
         File file =  new File("C:\\Users\\PC\\Desktop\\YetiTracker\\Test");
         Scanner sc = new Scanner(file);
 
-        while (sc.hasNextLine())
+        while (sc.hasNextLine()){
             System.out.println(sc.nextLine());
     }
-}
+}}

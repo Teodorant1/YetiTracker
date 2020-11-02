@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,26 +8,57 @@ import java.util.Random;
 
 public class DogWalker {
    public static List<String> Coordinates = new ArrayList<String>();
-   public static int x =0;
-   public static int y =0;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public  int x =0;
+   public  int y =0;
    int[] moves = {-3, -2, -1,0,1,2,3};
    public void DogWalker() {
-       x=x+ moves[new Random().nextInt(moves.length)];
-       y= y+ moves[new Random().nextInt(moves.length)];
+       setX(getX()+ moves[new Random().nextInt(moves.length)]);
+       setY(getY()+ moves[new Random().nextInt(moves.length)]);
 
-       Coordinates.add(((x + "." + y)));
-   System.out.println(x+","+y);
+       Coordinates.add((Coordinates.size()),((getX() + "." + getY())));
+
+   System.out.println(getX()+","+getY());
    }
 
+
+    public void DogWriter2p0() {
+        try {
+            FileWriter myWriter = new FileWriter("C:\\Users\\PC\\Desktop\\YetiTracker\\Test2");
+            myWriter.write("Files in Java might be tricky, but it is fun enough!");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
     public void DogWriter() throws FileNotFoundException {
         String fileName = ("C:\\Users\\PC\\Desktop\\YetiTracker\\Test");
-        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
-        Iterator<String> DogIterator = Coordinates.listIterator();
+        PrintWriter pw = new PrintWriter((fileName));
+        Iterator<String> DogIterator = Coordinates.iterator();
         while (DogIterator.hasNext()) {
-            pw.println(DogIterator.next());
+            pw.write(DogIterator.next());
         pw.close();
     }
     }
+
 
 
 }
